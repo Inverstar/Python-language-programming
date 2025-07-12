@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.15"
+__generated_with = "0.14.10"
 app = marimo.App(width="medium")
 
 
@@ -95,7 +95,68 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"""## 函数递归实例解析""")
+    mo.md(
+        r"""
+    ## 函数递归实例解析
+
+    ### 字符串反转
+    """
+    )
+    return
+
+
+@app.cell
+def _():
+    s = "012345"
+    print(s[::-1])
+    def rvs(s): #函数 + 分支结构
+        if s == "":
+            return s #递归基例
+        else:
+            return rvs(s[1:])+s[0] #递归链条
+    print(rvs(s))
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    ### 斐波那契数列
+
+    $F(n) = \begin{cases} 1 & n = 1 \\ 1 & n = 2 \\F(n-1) + F(n-2) & otherwise \end{cases}$
+    """
+    )
+    return
+
+
+@app.function
+def f(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return f(n-1) + f(n-2)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"""### 汉诺塔""")
+    return
+
+
+@app.cell
+def _():
+    count = 0
+    def hanoi(n, src, dst, mid):
+        global count
+        if n == 1:
+            print("{}:{}->{}".format(1,src,dst))
+            count += 1
+        else:
+            hanoi(n-1, src, mid, dst)
+            print("{}:{}->{}".format(n,src,dst))
+            count += 1
+            hanoi(n-1, mid, dst, src)
     return
 
 
