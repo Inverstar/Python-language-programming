@@ -45,13 +45,11 @@ def _(mo):
     return
 
 
-app._unparsable_cell(
-    r"""
-    import pyinstaller
-    pyinstaller -i curve.ico -F SevenDigitsDrawV2.py
-    """,
-    name="fact"
-)
+@app.cell
+def fact():
+    #import pyinstaller
+    #pyinstaller -i curve.ico -F SevenDigitsDrawV2.py
+    return
 
 
 if __name__ == "__main__":
