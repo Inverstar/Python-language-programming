@@ -49,7 +49,6 @@ def _():
 def _(mo):
     mo.md(
         r"""
-
     ## 集合操作符  
 
     ### 集合间操作
@@ -77,7 +76,7 @@ def _():
     print(S)
     S^=T
     print(S)
-    return
+    return (S,)
 
 
 @app.cell
@@ -86,9 +85,75 @@ def _(mo):
         r"""
     ## 集合处理方法  
 
-    ## 集合类型应用场景  
+    S.add(x) #如果x不在集合s中，将x增加到s  
+    S.discard(x) #移除S中元素x，如果x不在集合S中，不报错  
+    S.remove(x) #移除s中元素x，如果x不在集合s中，产生KeyError异常  
+    S.clear() #移除s中所有元素  
+    S.POP() #随机返回s的一个元素，更新s，若s为空产生KeyError异常  
+
+    S.copy() #返回集合s的一个副本  
+    len(S) #返回集合s的元素个数  
+    x in S #判断s中元素×，x在集合s中，返回True,否则返回False
+    x not in S #判断s中元素×，x不在集合s中，返回True,否则返回False
+    set(x) #将其他类型变量×转变为集合类型
     """
     )
+    return
+
+
+@app.cell
+def _(S):
+    S.add(7) #添加7
+    X = S.copy()
+    len(X)
+    print(7 in X)
+    S.discard(7) #移除7，不存在不报错
+    print(7 not in S)
+    # 提示用户（若不存在则输出信息）
+    try:
+        S.remove(7) #移除7，若7不存在报错
+    except (ValueError, KeyError) as e:
+        print(f"移除元素失败: {e}")
+    except Exception as e:
+        print(f"错误类型: {type(e)}")
+        print(f"错误信息: {e}")
+    S.clear() #移除所有元素
+    try:
+        S.pop() #随机返回一个元素，若S为空报错
+    except (ValueError, KeyError) as e:
+        print(f"移除元素失败: {e}")
+    except Exception as e:
+        print(f"错误类型: {type(e)}")
+        print(f"错误信息: {e}")
+    x = [7]
+    y = set(x)
+    print(x,y)
+
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+    ## 集合类型应用场景
+
+    ### 包含关系比较
+
+    对元素是否存在做判断
+
+    ### 数据去重
+    """
+    )
+    return
+
+
+@app.cell
+def _():
+    ls = [7,7]
+    s = set(ls)
+    lt = list(s)
+    print(lt)
     return
 
 
