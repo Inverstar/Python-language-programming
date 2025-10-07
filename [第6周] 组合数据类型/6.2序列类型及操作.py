@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.15.2"
+__generated_with = "0.15.3"
 app = marimo.App(width="medium")
 
 
@@ -97,7 +97,7 @@ def _(mo):
 
     - 元组继承序列类型的全部通用操作
     - 元组创建后不能修改，因此没有特殊操作
-    - 使用或不使用小括号  
+    - 使用或不使用小括号
     """
     )
     return
@@ -113,7 +113,7 @@ def _(mo):
 
     - 列表是一种序列类型，创建后可以随意被修改  
     - 使用方括号[]或list()创建，元素间用逗号,分隔  
-    - 列表中各元素类型可以不同，无长度限制  
+    - 列表中各元素类型可以不同，无长度限制
     """
     )
     return
@@ -136,9 +136,93 @@ def _(mo):
         r"""
     ### 列表类型操作函数和方法
 
+    ls[i] = x          # 替换列表ls第i个元素为x  
+    ls[i:j:k] = lt     # 用列表lt替换ls切片后所对应元素子列表  
+    del ls[i]          # 删除列表ls中第i个元素  
+    del ls[i:j:k]      # 删除列表ls中从第i到j以k为步长的元素  
+    ls += lt           # 更新列表ls，将列表lt的元素添加到列表ls中  
+    ls *= n            # 更新列表ls，将其元素重复n次  
 
+    ls.append(x)      # 在列表ls最后增加一个元素x  
+    ls.clear()        # 删除列表ls中所有元素  
+    ls.copy()         # 生成一个新列表，复制ls中所有元素  
+    ls.insert(i,x)    # 在列表ls的第i个位置增加元素x  
+    ls.pop(i)         # 将列表ls中第i个位置元素取出并删除该元素  
+    ls.remove(x)      # 将列表ls中出现的第一个元素x删除  
+    ls.reverse()      # 将列表ls中的元素反转
     """
     )
+    return
+
+
+@app.cell
+def _():
+    import random
+    random_num = random.randint(0, 1)
+    k = [1,2,3,4,5]
+    if random_num == 1:
+        k = [1]
+    print(k)
+    squares = [x**2 for x in range(10)]
+    print(squares)
+    #左右列表的数量要一致才能成功
+    try:
+        squares[1:10:2] = k  # 尝试替换切片
+    except ValueError as e:
+        print(f"值错误：可能是替换序列长度不匹配, {e},k={k}")
+    except TypeError as e:
+        print(f"类型错误：k可能不是可迭代对象, {e},k={k}")
+    except Exception as e:
+        print(f"其他错误：{type(e).__name__}, {e},k={k}")
+    print(squares[1:10:2])
+    print(squares)
+    s = squares.copy()
+    squares.reverse()
+    print(s,squares)
+    # 使用列表实现栈的功能
+    stack = []      # 创建空栈
+
+    # 入栈操作 (push)
+    stack.append(1)  # [1]
+    stack.append(2)  # [1, 2]
+    stack.append(3)  # [1, 2, 3]
+
+    print(f"入栈后：{stack}")  # 入栈后：[1, 2, 3]
+
+    # 出栈操作 (pop)
+    last = stack.pop()  # 弹出 3
+    print(f"出栈元素：{last}")  # 出栈元素：3
+    print(f"当前栈：{stack}")   # 当前栈：[1, 2]
+
+    # 查看栈顶元素
+    top = stack[-1]     # 获取栈顶元素但不删除
+    print(f"栈顶元素：{top}")   # 栈顶元素：2
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(
+        r"""
+    ## 序列类型应用场景
+
+    - 元组用于元素不改变的应用场景，更多用于固定搭配场景  
+    - 列表更加灵活，它是最常用的序列类型  
+    - 最主要作用：表示一组有序数据，进而操作它们
+    """
+    )
+    return
+
+
+@app.cell
+def _():
+    #元素遍历
+    stack1 = [1,2]
+    for i1 in stack1:
+        print(i1)
+    #数据转换
+    stack1 = tuple(stack1)
+    print(stack1)
     return
 
 
