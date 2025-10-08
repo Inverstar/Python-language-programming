@@ -14,19 +14,14 @@ def _():
 def _(mo):
     mo.md(
         r"""
-    # 基本统计值计算
+    # 文本词频统计
 
-    ## 总个数
+    ## 文本资料
 
-    ## 求和
-
-    ## 平均值
-
-    ## 方差
-
-    ## 中位数
-
-    [CalStatisticsV1](CalStatisticsV1.py)
+    - 英文文本：Hamet分析词频
+    https://python123.io/resources/pye/hamlet.txt
+    - 中文文本：《三国演义》分析人物
+    https://python123.io/resources/pye/threekingdoms.txt
     """
     )
     return
