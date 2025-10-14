@@ -14,14 +14,14 @@ def _():
 def _(mo):
     mo.md(
         r"""
-    # 文本词频统计
+    # 文件的使用  
 
-    ## 文本资料
+    ## 文件的类型  
 
-    - 英文文本：Hamet分析词频
-    https://python123.io/resources/pye/hamlet.txt
-    - 中文文本：《三国演义》分析人物
-    https://python123.io/resources/pye/threekingdoms.txt
+    ## 文件的打开和关闭  
+    ## 文件内容的读取  
+    ## 数据的文件写入  
+
     """
     )
     return
